@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kathy Vu — Technical Account Manager & Customer Success Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0F0F0E;
+    --ink-soft: #5A5A56;
+    --ink-mute: #9A9A95;
+    --surface: #FAFAF8;
+    --surface-raised: #FFFFFF;
+    --border: rgba(15,15,14,0.10);
+    --border-soft: rgba(15,15,14,0.06);
+    --teal: #0B6E58;
+    --teal-light: #E0F2EC;
+    --teal-mid: #1D9E75;
+    --amber: #92610A;
+    --amber-light: #FDF3E0;
+    --purple: #4A3FB5;
+    --purple-light: #EDEEFE;
+    --blue: #1A5FA8;
+    --blue-light: #E5F0FC;
+    --coral: #8C3720;
+    --coral-light: #FAEDE8;
+    --sans: 'Inter', system-ui, sans-serif;
+    --serif: 'DM Serif Display', Georgia, serif;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 2.5rem;
+    height: 56px;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 13px; color: var(--ink-soft); transition: color 0.15s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 12px; font-weight: 500;
+    background: var(--ink); color: #fff;
+    padding: 7px 14px; border-radius: 6px;
+    transition: opacity 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.82; }
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem 4rem;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--teal); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal-mid); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--ink-soft); }
+  .hero-pitch {
+    font-size: 16px; color: var(--ink-soft);
+    line-height: 1.8; max-width: 640px;
+    margin-bottom: 2rem;
+  }
+  .hero-pitch strong { color: var(--ink); font-weight: 500; }
+  .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    font-size: 13px; font-weight: 500;
+    background: var(--ink); color: #fff;
+    padding: 10px 20px; border-radius: 7px;
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.82; }
+  .btn-ghost {
+    font-size: 13px; color: var(--ink-soft);
+    padding: 10px 16px; border-radius: 7px;
+    border: 0.5px solid var(--border);
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--surface-raised);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover { color: var(--ink); border-color: rgba(15,15,14,0.25); }
+  section { max-width: 860px; margin: 0 auto; padding: 3rem 2.5rem; border-top: 0.5px solid var(--border-soft); }
+  .label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-mute); margin-bottom: 1.5rem;
+  }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .metric { background: var(--surface-raised); padding: 1.5rem 1.25rem; }
+  .metric-num {
+    font-family: var(--serif);
+    font-size: 32px; font-weight: 400;
+    color: var(--ink); line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .metric-label { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+  .philosophy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .phil {
+    padding: 1.25rem;
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-raised);
+  }
+  .phil-icon { font-size: 20px; color: var(--ink-mute); margin-bottom: 0.75rem; display: block; }
+  .phil h3 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; }
+  .phil p { font-size: 12px; color: var(--ink-soft); line-height: 1.65; }
+  .cases { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .case {
+    background: var(--surface-raised);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex; flex-direction: column;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .case:hover { border-color: rgba(15,15,14,0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .case-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .case-icon { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .case-arrow { font-size: 16px; color: var(--ink-mute); }
+  .case-co { font-size: 11px; color: var(--ink-mute); margin-bottom: 4px; }
+  .case h3 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+  .case p { font-size: 12px; color: var(--ink-soft); line-height: 1.7; flex: 1; margin-bottom: 1rem; }
+  .case-result {
+    font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 99px;
+    display: inline-block; align-self: flex-start;
+  }
+  .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ai-card {
+    background: var(--surface-raised);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .ai-icon-wrap { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+  .ai-card h4 { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .ai-card p { font-size: 12px; color: var(--ink-soft); line-height: 1.65; }
+  .skills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .skill {
+    font-size: 12px; color: var(--ink-soft);
+    padding: 5px 12px; border-radius: 99px;
+    border: 0.5px solid var(--border);
+    background: var(--surface-raised);
+  }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: flex; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 0.5px solid var(--border-soft); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-left { flex: 1; }
+  .exp-right { width: 200px; text-align: right; flex-shrink: 0; }
+  .exp-role { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .exp-co { font-size: 13px; color: var(--ink-soft); }
+  .exp-date { font-size: 12px; color: var(--ink-mute); margin-top: 4px; }
+  .exp-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.65; margin-top: 0.5rem; }
+  .certs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cert {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--ink-soft);
+    padding: 6px 12px; border-radius: 7px;
+    border: 0.5px solid var(--border);
+    background: var(--surface-raised);
+  }
+  .cert i { font-size: 14px; color: var(--teal); }
+  .contact-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+  .contact-item {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--ink-soft);
+    padding: 8px 16px; border-radius: 8px;
+    border: 0.5px solid var(--border);
+    background: var(--surface-raised);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .contact-item:hover { color: var(--ink); border-color: rgba(15,15,14,0.25); }
+  .contact-item i { font-size: 16px; }
+  .story-card {
+    border: 0.5px solid var(--teal-mid);
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: var(--surface-raised);
+  }
+  .story-card h3 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: .6rem; }
+  .story-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.75; margin-bottom: .8rem; }
+  .story-card p:last-child { margin-bottom: 0; }
+  footer {
+    max-width: 860px; margin: 0 auto;
+    padding: 2rem 2.5rem;
+    border-top: 0.5px solid var(--border-soft);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 12px; color: var(--ink-mute); }
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .hero, section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .hero { padding-top: 3rem; }
+    .metrics { grid-template-columns: 1fr 1fr; }
+    .philosophy { grid-template-columns: 1fr; }
+    .cases { grid-template-columns: 1fr; }
+    .ai-grid { grid-template-columns: 1fr; }
+    .exp-right { display: none; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-dot { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <span class="nav-name">Kathy Vu</span>
+  <div class="nav-links">
+    <a href="#impact">Impact</a>
+    <a href="#work">Customer Stories</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:kathyv8383@yahoo.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-dot"></span>
+    Open to TAM & Customer Success opportunities
+  </div>
+  <h1>Technical Account Manager<br>&amp; Customer Success Manager<br><em>— Kathy Vu</em></h1>
+  <p class="hero-pitch">
+    <strong>10+ years</strong> delivering customer-facing technical solutions across <strong>mortgage, FinTech, and regulated SaaS</strong>. I partner with enterprise customers, vendors, engineering, and operations teams to improve adoption, resolve complex workflow challenges, and translate business needs into scalable technical outcomes. My strength is bridging the gap between the customer problem, the product capability, and the execution path that creates measurable value.
+  </p>
+  <div class="hero-actions">
+    <a href="mailto:kathyv8383@yahoo.com" class="btn-primary">
+      <i class="ti ti-mail" aria-hidden="true"></i> Get in touch
+    </a>
+    <a href="#work" class="btn-ghost">
+      <i class="ti ti-user-check" aria-hidden="true"></i> View customer impact
+    </a>
+  </div>
+</div>
+
+<section id="impact">
+  <p class="label">Customer outcomes</p>
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-num">51%</div>
+      <div class="metric-label">Increase in platform transaction volume through workflow and usability improvements</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">20%+</div>
+      <div class="metric-label">Turnaround improvement from client-facing integrations and process optimization</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">2.6M+</div>
+      <div class="metric-label">Monthly transactions supported on a cloud-native SaaS default management platform</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num">$7.7M</div>
+      <div class="metric-label">Projected annual efficiency opportunity from verification automation</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="label">Customer success philosophy</p>
+  <div class="philosophy">
+    <div class="phil">
+      <i class="ti ti-handshake phil-icon" aria-hidden="true"></i>
+      <h3>Trusted advisor mindset</h3>
+      <p>I build credibility by understanding the customer’s business context, clarifying success criteria, and aligning technical solutions to practical outcomes.</p>
+    </div>
+    <div class="phil">
+      <i class="ti ti-tool phil-icon" aria-hidden="true"></i>
+      <h3>Technical problem solving</h3>
+      <p>I translate APIs, integrations, workflows, and platform constraints into clear options for customers, stakeholders, and engineering teams.</p>
+    </div>
+    <div class="phil">
+      <i class="ti ti-chart-line phil-icon" aria-hidden="true"></i>
+      <h3>Adoption through value</h3>
+      <p>I focus on reducing friction, improving usability, and continuously optimizing the customer journey after launch—not just delivering the initial implementation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <p class="label">Selected customer success stories</p>
+  <div class="cases">
+    <div class="case">
+      <div class="case-header">
+        <div class="case-icon" style="background:var(--blue-light);">
+          <i class="ti ti-plug-connected" style="color:var(--blue);" aria-hidden="true"></i>
+        </div>
+        <i class="ti ti-arrow-up-right case-arrow" aria-hidden="true"></i>
+      </div>
+      <p class="case-co">DXC Technology · Client-Facing SaaS</p>
+      <h3>Enterprise Client Integrations</h3>
+      <p>Partnered with enterprise clients and internal technology teams to deliver integrations including Equifax VOE, Finicity, First American Title, and Mortgage Connect. Served as a bridge between customer requirements, implementation teams, and platform delivery.</p>
+      <span class="case-result" style="background:var(--blue-light); color:var(--blue);">20%+ turnaround improvement · 2.6M+ monthly transactions supported</span>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <div class="case-icon" style="background:var(--teal-light);">
+          <i class="ti ti-chart-arrows-vertical" style="color:var(--teal);" aria-hidden="true"></i>
+        </div>
+        <i class="ti ti-arrow-up-right case-arrow" aria-hidden="true"></i>
+      </div>
+      <p class="case-co">JLL Technologies · Global Platform</p>
+      <h3>Customer Adoption & Payments Optimization</h3>
+      <p>Partnered with cross-functional stakeholders to improve ordering, invoicing, and payment experiences for a global café management platform. Used customer and operational feedback to prioritize enhancements that improved usage and payment outcomes.</p>
+      <span class="case-result" style="background:var(--teal-light); color:var(--teal);">+51% transaction volume · ~$1M late payments eliminated</span>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <div class="case-icon" style="background:var(--purple-light);">
+          <i class="ti ti-shield-check" style="color:var(--purple);" aria-hidden="true"></i>
+        </div>
+        <i class="ti ti-arrow-up-right case-arrow" aria-hidden="true"></i>
+      </div>
+      <p class="case-co">Rocket Mortgage · Workflow Optimization</p>
+      <h3>Verification Services Experience</h3>
+      <p>Collaborated with internal teams and fintech vendor partners to reduce friction in income verification workflows. Helped align business needs, vendor capabilities, and technical delivery across Truv, Truework, and asset-based verification methods.</p>
+      <span class="case-result" style="background:var(--purple-light); color:var(--purple);">$3.6M–$7.7M projected savings · 7–10 day cycle improvement</span>
+    </div>
+
+    <div class="case">
+      <div class="case-header">
+        <div class="case-icon" style="background:var(--coral-light);">
+          <i class="ti ti-route" style="color:var(--coral);" aria-hidden="true"></i>
+        </div>
+        <i class="ti ti-arrow-up-right case-arrow" aria-hidden="true"></i>
+      </div>
+      <p class="case-co">Rocket Mortgage · Launch Readiness</p>
+      <h3>Cross-Functional Product Launch Support</h3>
+      <p>Supported launch readiness by aligning business, operations, pricing, marketing, and technical teams around a new loan product offering. Clarified dependencies, readiness gaps, and implementation needs to support a smoother go-live experience.</p>
+      <span class="case-result" style="background:var(--coral-light); color:var(--coral);">Go-live alignment · Stakeholder readiness · Operational enablement</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="label">Customer success story</p>
+  <div class="story-card">
+    <h3>Reducing friction through technical alignment</h3>
+    <p>A major operational challenge involved slow, fragmented verification workflows that created downstream delays and manual effort. I worked across business stakeholders, vendors, and technology teams to clarify the problem, evaluate routing options, and support a more scalable workflow design.</p>
+    <p>The result was a more efficient experience with measurable cycle-time improvement, projected cost savings, and stronger alignment between business operations and technical execution.</p>
+  </div>
+</section>
+
+<section>
+  <p class="label">Technical enablement & automation fluency</p>
+  <div class="ai-grid">
+    <div class="ai-card">
+      <div class="ai-icon-wrap" style="background:var(--purple-light);">
+        <i class="ti ti-brain" style="color:var(--purple);" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h4>AI-enabled customer communication</h4>
+        <p>Use Copilot, ChatGPT, and Zoom AI to synthesize meetings, draft stakeholder-ready updates, and accelerate clear documentation.</p>
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-icon-wrap" style="background:var(--teal-light);">
+        <i class="ti ti-settings-automation" style="color:var(--teal);" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h4>Workflow and decisioning design</h4>
+        <p>Designed rules-based routing logic to reduce manual steps and improve operational efficiency across verification and payment workflows.</p>
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-icon-wrap" style="background:var(--amber-light);">
+        <i class="ti ti-chart-dots" style="color:var(--amber);" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h4>Data-driven success management</h4>
+        <p>Use vendor analytics, conversion cohorts, adoption signals, and drop-off data to identify optimization opportunities after launch.</p>
+      </div>
+    </div>
+    <div class="ai-card">
+      <div class="ai-icon-wrap" style="background:var(--blue-light);">
+        <i class="ti ti-lifebuoy" style="color:var(--blue);" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h4>Issue resolution and escalation clarity</h4>
+        <p>Translate customer pain points into clear technical requirements, dependency tracking, and resolution paths for delivery teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="label">Customer success & technical skills</p>
+  <div class="skills">
+    <span class="skill">Technical Account Management</span>
+    <span class="skill">Customer Success Strategy</span>
+    <span class="skill">Enterprise Client Enablement</span>
+    <span class="skill">Client Onboarding</span>
+    <span class="skill">API & Vendor Integrations</span>
+    <span class="skill">SaaS Platform Delivery</span>
+    <span class="skill">Escalation & Issue Resolution</span>
+    <span class="skill">Adoption & Workflow Optimization</span>
+    <span class="skill">Stakeholder Communication</span>
+    <span class="skill">Requirements Translation</span>
+    <span class="skill">JIRA · Azure DevOps · Confluence</span>
+    <span class="skill">Smartsheet · Asana · Figma</span>
+    <span class="skill">Copilot · ChatGPT · Zoom AI</span>
+    <span class="skill">Mortgage Origination & Servicing</span>
+    <span class="skill">Regulated SaaS</span>
+  </div>
+</section>
+
+<section id="experience">
+  <p class="label">Experience</p>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-left">
+        <p class="exp-role">Principal Project Manager — Product Delivery</p>
+        <p class="exp-co">Rocket Mortgage (formerly Mr. Cooper)</p>
+        <p class="exp-desc">Partner with business, operations, compliance, engineering, and vendor teams to improve verification services and platform workflows. Translate stakeholder needs into technical delivery plans, backlog priorities, workflow improvements, and measurable business outcomes.</p>
+      </div>
+      <div class="exp-right">
+        <p class="exp-date">11/2024 – Present</p>
+        <p class="exp-date">Dallas–Fort Worth · Remote</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left">
+        <p class="exp-role">Senior Technical Project Manager</p>
+        <p class="exp-co">JLL Technologies</p>
+        <p class="exp-desc">Owned roadmap and delivery coordination for a global café management and payments platform. Worked with cross-functional stakeholders to improve usability, transaction volume, payment workflows, and operational outcomes across a distributed platform environment.</p>
+      </div>
+      <div class="exp-right">
+        <p class="exp-date">07/2022 – 02/2024</p>
+        <p class="exp-date">Dallas–Fort Worth · Remote</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-left">
+        <p class="exp-role">Lead Business Analyst & Project Manager</p>
+        <p class="exp-co">DXC Technology</p>
+        <p class="exp-desc">Supported client-facing SaaS enhancements and enterprise integrations for EarlyResolution, coordinating requirements, implementation details, and delivery activities across customers, vendors, and technical teams.</p>
+      </div>
+      <div class="exp-right">
+        <p class="exp-date">11/2016 – 07/2022</p>
+        <p class="exp-date">Dallas–Fort Worth · Remote</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="label">Certifications</p>
+  <div class="certs">
+    <span class="cert"><i class="ti ti-rosette" aria-hidden="true"></i> Certified Scrum Product Owner (CSPO)</span>
+    <span class="cert"><i class="ti ti-rosette" aria-hidden="true"></i> Certified ScrumMaster (CSM)</span>
+    <span class="cert"><i class="ti ti-rosette" aria-hidden="true"></i> Scrum Fundamentals Certified (SFC)</span>
+    <span class="cert"><i class="ti ti-rosette" aria-hidden="true"></i> Agile Project Management – Coursera</span>
+    <span class="cert"><i class="ti ti-rosette" aria-hidden="true"></i> Six Sigma Yellow Belt</span>
+  </div>
+</section>
+
+<section id="contact">
+  <p class="label">Get in touch</p>
+  <div class="contact-grid">
+    <a href="mailto:kathyv8383@yahoo.com" class="contact-item">
+      <i class="ti ti-mail" aria-hidden="true"></i> kathyv8383@yahoo.com
+    </a>
+    <a href="tel:9729006719" class="contact-item">
+      <i class="ti ti-phone" aria-hidden="true"></i> 972-900-6719
+    </a>
+    <span class="contact-item">
+      <i class="ti ti-map-pin" aria-hidden="true"></i> Dallas–Fort Worth, TX
+    </span>
+  </div>
+</section>
+<footer>
+  <p>© 2026 Kathy Vu · Technical Account Manager & Customer Success Manager</p>
+  <p style="color:var(--ink-mute); font-size:11px;">Dallas–Fort Worth, TX · Remote · kathyv8383@yahoo.com</p>
+</footer>
+</body>
+</html>
